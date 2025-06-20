@@ -45,11 +45,37 @@
       color: #2563eb;
       transform: translateY(-2px);
     }
+    .mobile-nav-link {
+      transition: all 0.2s ease;
+    }
+    .mobile-menu-slide {
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from { 
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .error-code {
       background: linear-gradient(135deg, #2563eb, #10b981);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+    @media (max-width: 768px) {
+      .mobile-padding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .mobile-text {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
     }
   </style>
 </head>
@@ -85,9 +111,8 @@
       </div>
     </div>
   </nav>
-
   <!-- MAIN 404 CONTENT -->
-  <div class="flex-grow flex flex-col items-center justify-center px-6 py-12">
+  <div class="flex-grow flex flex-col items-center justify-center px-6 py-12 mobile-padding">
     <div class="text-center max-w-2xl mx-auto">
       
       <!-- 404 ICON -->
@@ -102,8 +127,7 @@
       <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 fade-in">
         Oops! Page Not Found
       </h2>
-      
-      <p class="text-xl text-gray-600 mb-8 leading-relaxed fade-in">
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed fade-in mobile-text">
         The page you're looking for seems to have wandered off into the digital void. 
         Don't worry though – our coding team is probably working on something amazing!
       </p>
@@ -152,7 +176,6 @@
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuIcon = mobileMenuToggle.querySelector('i');
-
   if (mobileMenuToggle && mobileMenu) {
     mobileMenuToggle.addEventListener('click', function() {
       mobileMenu.classList.toggle('hidden');
@@ -162,6 +185,7 @@
         mobileMenuIcon.className = 'bi bi-list text-2xl';
       } else {
         mobileMenuIcon.className = 'bi bi-x text-2xl';
+        mobileMenu.classList.add('mobile-menu-slide');
       }
     });
 
