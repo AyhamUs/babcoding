@@ -127,17 +127,29 @@
     }
     .cta-button:hover::before {
       left: 100%;
-    }
-    .faq-item {
+    }    .faq-item {
       transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
-    .faq-content {
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .faq-toggle {
+      transition: all 0.2s ease;
+    }
+    .faq-toggle:hover {
+      background-color: #f8fafc;
+    }    .faq-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding-top: 0;
+      padding-bottom: 0;
     }
     .faq-content.open {
-      max-height: 200px;
+      max-height: 300px;
+      padding-top: 1rem;
+      padding-bottom: 1.5rem;
     }
     @media (max-width: 768px) {
       .mobile-padding {
@@ -318,52 +330,44 @@
         </div></div>
     </section>    <!-- FAQ SECTION -->
     <section class="mb-12">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Frequently Asked Questions</h2>
-      <div class="max-w-3xl mx-auto space-y-4">
-        <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Frequently Asked Questions</h2>      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">          <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-all duration-200">
             <div class="flex justify-between items-center">
-              <span>How much does it cost to get a website?</span>
-              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300"></i>
+              <span class="text-lg">How much does it cost to get a website?</span>
+              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300 text-blue-600"></i>
             </div>
-          </button>
-          <div class="faq-content px-6 pb-4 text-gray-600">
+          </button>          <div class="faq-content px-6 text-gray-600 leading-relaxed text-justify">
             Our website development services are completely free! We're a nonprofit organization dedicated to helping local businesses and community organizations establish their online presence without financial barriers.
           </div>
-        </div>
-        
-        <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+        </div>        
+        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-all duration-200">
             <div class="flex justify-between items-center">
-              <span>How long does it take to build a website?</span>
-              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300"></i>
+              <span class="text-lg">How long does it take to build a website?</span>
+              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300 text-blue-600"></i>
             </div>
           </button>
-          <div class="faq-content px-6 pb-4 text-gray-600">
+          <div class="faq-content px-6 text-gray-600 leading-relaxed text-justify">
             Typically 2-4 weeks depending on the complexity and features needed. We'll work with you to establish a timeline that meets your needs and keep you updated throughout the development process.
           </div>
-        </div>
-
-        <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+        </div>        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-all duration-200">
             <div class="flex justify-between items-center">
-              <span>What types of websites do you build?</span>
-              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300"></i>
+              <span class="text-lg">What types of websites do you build?</span>
+              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300 text-blue-600"></i>
             </div>
           </button>
-          <div class="faq-content px-6 pb-4 text-gray-600">
+          <div class="faq-content px-6 text-gray-600 leading-relaxed text-justify">
             We specialize in business websites, nonprofit organization sites, portfolio pages, and simple e-commerce solutions. All websites are mobile-responsive and optimized for search engines.
           </div>
-        </div>
-
-        <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button class="faq-toggle w-full px-6 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+        </div>        <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-all duration-200">
             <div class="flex justify-between items-center">
-              <span>Do you provide ongoing support after the website is completed?</span>
-              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300"></i>
+              <span class="text-lg">Do you provide ongoing support after the website is completed?</span>
+              <i class="bi bi-chevron-down faq-icon transform transition-transform duration-300 text-blue-600"></i>
             </div>
           </button>
-          <div class="faq-content px-6 pb-4 text-gray-600">
+          <div class="faq-content px-6 text-gray-600 leading-relaxed text-justify">
             Yes! We provide ongoing maintenance support, security updates, and basic content updates. Our team is committed to ensuring your website continues to serve your community effectively.
           </div>
         </div>
