@@ -35,7 +35,7 @@ We're a community-powered initiative of student developers on a mission to make 
 ## 📈 By the Numbers
 
 - ✅ **42** websites built
-- 👩‍💻 **6** student developers
+- 👩‍💻 **17** volunteers
 - 💸 **100% Free** (always)
 
 ---
