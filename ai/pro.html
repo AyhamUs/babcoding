@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workify Pro – Premium AI Writing Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Workify Pro - Unlimited AI writing tools for professionals. Premium features, unlimited requests, and advanced AI models.">
+  
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'inter': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a'
+            },
+            gold: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f'
+            },
+            premium: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              200: '#f5d0fe',
+              300: '#f0abfc',
+              400: '#e879f9',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+              800: '#86198f',
+              900: '#701a75'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .premium-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    
+    .premium-text {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .premium-glass {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 215, 0, 0.1);
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    .slide-in {
+      animation: slideIn 0.8s ease-out;
+    }
+    
+    .premium-badge {
+      background: linear-gradient(45deg, #f59e0b, #d97706);
+      animation: premiumPulse 3s infinite;
+    }
+    
+    .pro-glow {
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes premiumPulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+      }
+      50% { 
+        transform: scale(1.02);
+        box-shadow: 0 0 40px rgba(245, 158, 11, 0.5);
+      }
+    }
+    
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      background: linear-gradient(45deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape:nth-child(1) {
+      width: 100px;
+      height: 100px;
+      top: 15%;
+      left: 8%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 55%;
+      right: 12%;
+      animation-delay: 3s;
+    }
+    
+    .shape:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      bottom: 25%;
+      left: 65%;
+      animation-delay: 6s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-25px) rotate(120deg); }
+      66% { transform: translateY(-15px) rotate(240deg); }
+    }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .floating-shapes {
+        display: none;
+      }
+      
+      .sidebar-mobile {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .sidebar-mobile.open {
+        transform: translateX(0);
+      }
+      
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .mobile-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 font-inter">
+  
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- Navigation Header -->
+  <nav class="premium-glass sticky top-0 z-50 border-b border-gold-200/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-4">
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuBtn" class="md:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-white/50 transition-all">
+            <i class="bi bi-list text-xl"></i>
+          </button>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 gold-gradient rounded-xl flex items-center justify-center pro-glow">
+              <i class="bi bi-lightning-charge text-white text-sm sm:text-lg"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h1 class="text-lg sm:text-xl font-bold premium-text">Workify</h1>
+                <span class="premium-badge text-white text-xs px-2 py-1 rounded-full font-semibold">PRO</span>
+              </div>
+              <p class="text-xs text-gold-600 hidden sm:block font-medium">Premium AI Platform</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <button class="hidden sm:block text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg hover:bg-white/50 transition-all">
+            Settings
+          </button>
+          <div class="flex items-center space-x-3 bg-white/60 px-3 py-2 rounded-xl border border-gold-200/50">
+            <div class="w-8 h-8 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full flex items-center justify-center">
+              <i class="bi bi-person-fill text-white text-sm"></i>
+            </div>
+            <div class="hidden sm:block">
+              <div class="text-sm font-semibold text-gray-900">Ayham</div>
+              <div class="text-xs text-gold-600">Pro Member</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay -->
+  <div id="mobileOverlay" class="mobile-overlay md:hidden"></div>
+
+  <!-- Main Container -->
+  <div class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar-mobile md:relative md:transform-none fixed top-0 left-0 h-full w-80 premium-glass border-r border-gold-200/30 p-4 sm:p-6 slide-in z-50 md:z-auto overflow-y-auto">
+      <!-- Mobile Close Button -->
+      <div class="md:hidden flex justify-between items-center mb-6">
+        <h2 class="text-lg font-semibold text-gray-900">Menu</h2>
+        <button id="closeMobileMenu" class="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-white/50 transition-all">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      
+      <div class="space-y-6 sm:space-y-8">
+        
+        <!-- Pro Status -->
+        <div class="premium-badge rounded-xl p-4 text-white text-center">
+          <div class="flex items-center justify-center space-x-2 mb-2">
+            <i class="bi bi-star-fill text-yellow-300"></i>
+            <span class="font-bold text-lg">Workify Pro</span>
+          </div>
+          <p class="text-sm opacity-90">Unlimited everything!</p>
+        </div>
+        
+        <!-- Tools Navigation -->
+        <div>
+          <h3 class="text-sm font-semibold text-gold-600 uppercase tracking-wide mb-4">AI Tools (Unlimited)</h3>
+          <nav class="space-y-2">
+            <button id="formalizerBtn" class="flex items-center space-x-3 w-full text-left px-3 sm:px-4 py-3 rounded-xl bg-gradient-to-r from-gold-50 to-orange-50 border border-gold-200/50 hover:bg-gradient-to-r hover:from-gold-100 hover:to-orange-100 transition-all group pro-glow">
+              <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-chat-text text-white"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-semibold text-gray-900 text-sm sm:text-base">Text Formalizer Pro</div>
+                <div class="text-xs text-gold-600">Advanced AI • Unlimited</div>
+              </div>
+              <i class="bi bi-lightning-fill text-gold-500"></i>
+            </button>
+            
+            <button class="flex items-center space-x-3 w-full text-left px-3 sm:px-4 py-3 rounded-xl bg-gradient-to-r from-gold-50 to-orange-50 border border-gold-200/50 hover:bg-gradient-to-r hover:from-gold-100 hover:to-orange-100 transition-all group pro-glow">
+              <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-file-text text-white"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-semibold text-gray-900 text-sm sm:text-base">Document Analyzer Pro</div>
+                <div class="text-xs text-gold-600">AI-Powered • Available Now</div>
+              </div>
+              <i class="bi bi-lightning-fill text-gold-500"></i>
+            </button>
+            
+            <button class="flex items-center space-x-3 w-full text-left px-3 sm:px-4 py-3 rounded-xl bg-gradient-to-r from-gold-50 to-orange-50 border border-gold-200/50 hover:bg-gradient-to-r hover:from-gold-100 hover:to-orange-100 transition-all group pro-glow">
+              <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-envelope text-white"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-semibold text-gray-900 text-sm sm:text-base">Email Generator Pro</div>
+                <div class="text-xs text-gold-600">Smart Templates • Unlimited</div>
+              </div>
+              <i class="bi bi-lightning-fill text-gold-500"></i>
+            </button>
+            
+            <button class="flex items-center space-x-3 w-full text-left px-3 sm:px-4 py-3 rounded-xl bg-gradient-to-r from-gold-50 to-orange-50 border border-gold-200/50 hover:bg-gradient-to-r hover:from-gold-100 hover:to-orange-100 transition-all group pro-glow">
+              <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-magic text-white"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-semibold text-gray-900 text-sm sm:text-base">Content Enhancer</div>
+                <div class="text-xs text-gold-600">Pro Exclusive • Advanced AI</div>
+              </div>
+              <i class="bi bi-lightning-fill text-gold-500"></i>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Usage Stats - Pro Version -->
+        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-3 sm:p-4 border border-green-200/50">
+          <h4 class="font-semibold text-gray-900 mb-3 text-sm sm:text-base flex items-center space-x-2">
+            <i class="bi bi-infinity text-green-600"></i>
+            <span>Pro Usage</span>
+          </h4>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-600">Today's Requests</span>
+              <span class="font-bold text-green-600 text-sm sm:text-base">47 / ∞</span>
+            </div>
+            <div class="w-full bg-green-200 rounded-full h-2">
+              <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-xs text-green-600 font-medium">✨ Unlimited requests with Pro</p>
+          </div>
+        </div>
+
+        <!-- Pro Features -->
+        <div class="bg-gradient-to-r from-gold-500 to-orange-500 rounded-xl p-4 sm:p-6 text-white">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="bi bi-crown-fill text-yellow-300"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-bold mb-2 text-sm sm:text-base">Pro Features Active</h4>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center space-x-2">
+                  <i class="bi bi-check-circle-fill text-green-300 text-xs"></i>
+                  <span>Unlimited AI requests</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="bi bi-check-circle-fill text-green-300 text-xs"></i>
+                  <span>Advanced AI models</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="bi bi-check-circle-fill text-green-300 text-xs"></i>
+                  <span>Priority processing</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="bi bi-check-circle-fill text-green-300 text-xs"></i>
+                  <span>No advertisements</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile Settings Button -->
+        <div class="md:hidden">
+          <button class="w-full text-gray-600 hover:text-gray-900 px-4 py-3 rounded-lg hover:bg-white/50 transition-all border border-gold-200">
+            Account Settings
+          </button>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto md:ml-0">
+      <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8 sm:space-y-12">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 sm:space-y-6 fade-in">
+          <div class="inline-flex items-center space-x-2 bg-gold-100 text-gold-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold border border-gold-200">
+            <i class="bi bi-crown-fill"></i>
+            <span class="hidden sm:inline">Pro Member • Premium Experience</span>
+            <span class="sm:hidden">Pro Member</span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+            Welcome back,
+            <span class="premium-text">Ayham</span>
+          </h1>
+          
+          <p class="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+            Your premium AI writing suite is ready. Access unlimited transformations, advanced models, 
+            and exclusive features with zero limitations.
+          </p>
+          
+          <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-600 px-4">
+            <div class="flex items-center space-x-2">
+              <i class="bi bi-infinity text-gold-500"></i>
+              <span class="hidden sm:inline">Unlimited Requests</span>
+              <span class="sm:hidden">Unlimited</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="bi bi-lightning-charge text-gold-500"></i>
+              <span class="hidden sm:inline">Priority Processing</span>
+              <span class="sm:hidden">Priority</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="bi bi-robot text-gold-500"></i>
+              <span class="hidden sm:inline">Advanced AI Models</span>
+              <span class="sm:hidden">Advanced AI</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pro Formalizer Tool -->
+        <section id="formalizerTool" class="premium-glass rounded-xl sm:rounded-2xl shadow-2xl border border-gold-200/50 card-hover fade-in pro-glow">
+          <div class="p-4 sm:p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+              <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-xl flex items-center justify-center flex-shrink-0 pro-glow">
+                  <i class="bi bi-magic text-white text-lg sm:text-xl"></i>
+                </div>
+                <div>
+                  <div class="flex items-center space-x-2 mb-1">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Text Formalizer</h2>
+                    <span class="premium-badge text-white text-xs px-2 py-1 rounded-full font-bold">PRO</span>
+                  </div>
+                  <p class="text-sm sm:text-base text-gray-600">Advanced AI with unlimited transformations</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-2 text-xs sm:text-sm text-gold-600 bg-gold-50 px-3 py-2 rounded-lg border border-gold-200">
+                <i class="bi bi-cpu-fill"></i>
+                <span>GPT-4 Turbo</span>
+              </div>
+            </div>
+
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Input Section -->
+              <div>
+                <label for="inputText" class="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+                  Input Text
+                </label>
+                <textarea 
+                  id="inputText" 
+                  rows="4" 
+                  class="w-full p-3 sm:p-4 border-2 border-gold-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all resize-none text-sm sm:text-base bg-white/70" 
+                  placeholder="Enter your text for premium AI transformation... Pro users get faster processing and better results!"
+                ></textarea>
+              </div>
+
+              <!-- Enhanced Settings Row -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div>
+                  <label for="conversion" class="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+                    Style (Pro Models)
+                  </label>
+                  <select id="conversion" class="w-full p-2.5 sm:p-3 border-2 border-gold-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all text-sm sm:text-base bg-white/70">
+                    <option value="formal">Business Formal</option>
+                    <option value="technical">Technical Professional</option>
+                    <option value="academic">Academic Research</option>
+                    <option value="creative">Creative Writing</option>
+                    <option value="legal">Legal Document</option>
+                    <option value="medical">Medical Professional</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="spiciness" class="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+                    Formality: <span id="spicinessValue" class="text-gold-600 font-bold">3</span>
+                  </label>
+                  <input 
+                    type="range" 
+                    id="spiciness" 
+                    min="0" 
+                    max="5" 
+                    value="3" 
+                    class="w-full h-3 bg-gold-200 rounded-lg appearance-none cursor-pointer accent-gold-500"
+                  >
+                  <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>Casual</span>
+                    <span>Formal</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="tone" class="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+                    Tone (Pro Only)
+                  </label>
+                  <select id="tone" class="w-full p-2.5 sm:p-3 border-2 border-gold-200 rounded-lg sm:rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all text-sm sm:text-base bg-white/70">
+                    <option value="neutral">Neutral</option>
+                    <option value="confident">Confident</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="authoritative">Authoritative</option>
+                    <option value="persuasive">Persuasive</option>
+                  </select>
+                </div>
+
+                <div class="flex items-end">
+                  <button id="submitBtn" class="w-full gold-gradient hover:from-gold-600 hover:to-orange-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 text-sm sm:text-base pro-glow">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    <span>Pro Transform</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Output Section -->
+              <div id="outputContainer" class="hidden">
+                <label class="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+                  Premium AI Output
+                </label>
+                <div class="relative">
+                  <div id="output" class="w-full p-3 sm:p-4 pr-16 sm:pr-20 bg-gradient-to-br from-gold-50 to-orange-50 border-2 border-gold-200 rounded-lg sm:rounded-xl min-h-[100px] sm:min-h-[120px] whitespace-pre-wrap text-gray-800 leading-relaxed text-sm sm:text-base"></div>
+                  <button id="copyBtn" class="absolute top-2 sm:top-3 right-2 sm:right-3 gold-gradient hover:from-gold-600 hover:to-orange-600 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-md sm:rounded-lg shadow-lg border-0 flex items-center space-x-1 sm:space-x-2 transition-all text-xs sm:text-sm font-semibold">
+                    <i class="bi bi-clipboard-check"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pro Features Grid -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 fade-in">
+          <div class="premium-glass rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-gold-200/50 card-hover pro-glow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+              <i class="bi bi-infinity text-white text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Unlimited Usage</h3>
+            <p class="text-sm sm:text-base text-gray-600">No limits on requests, transformations, or features. Use as much as you need.</p>
+          </div>
+          
+          <div class="premium-glass rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-gold-200/50 card-hover pro-glow">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+              <i class="bi bi-robot text-white text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Advanced AI Models</h3>
+            <p class="text-sm sm:text-base text-gray-600">Access to GPT-4 Turbo and other premium models for superior results.</p>
+          </div>
+          
+          <div class="premium-glass rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-gold-200/50 card-hover pro-glow sm:col-span-2 lg:col-span-1">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+              <i class="bi bi-headset text-white text-lg sm:text-xl"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Priority Support</h3>
+            <p class="text-sm sm:text-base text-gray-600">24/7 premium support with dedicated response times and expert assistance.</p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
