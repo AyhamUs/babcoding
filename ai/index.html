@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workify – AI-Powered Writing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="flex min-h-screen bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="relative w-64 bg-white border-r p-6 shadow-md flex flex-col justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+        <i class="bi bi-tools"></i> Workify
+      </h1>
+      <p class="text-sm text-gray-500 mt-1 pl-1">by Ayham & Shehzaad</p>
+
+      <nav class="mt-10">
+        <ul class="space-y-3">
+          <li>
+            <button id="formalizerBtn" class="flex items-center gap-2 w-full text-left px-4 py-2 rounded-md hover:bg-gray-100 transition-all duration-150">
+              <i class="bi bi-chat-left-text"></i> Formalizer
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Guest User -->
+    <div class="flex items-center gap-3 mt-10 text-sm text-gray-600">
+      <i class="bi bi-person-circle text-2xl text-gray-500"></i>
+      <div>
+        <div class="font-medium">Guest</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-10 space-y-16">
+
+    <!-- Hero / Selling Point -->
+    <section class="max-w-4xl mx-auto text-center space-y-4">
+      <h2 class="text-4xl font-bold text-gray-800">Boost Communication at Scale</h2>
+      <p class="text-lg text-gray-600">
+        Workify helps teams and enterprises craft better emails, reports, and documents in seconds.
+        Save time, ensure clarity, and maintain professionalism across your organization.
+      </p>
+    </section>
+
+    <!-- Formalizer Tool -->
+    <section id="formalizerTool" class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md space-y-6 fade-in">
+      <h3 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+        <i class="bi bi-magic"></i> Formalizer Tool
+      </h3>
+
+      <textarea id="inputText" rows="5" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="Paste or type your informal text..."></textarea>
+
+      <div class="flex flex-wrap items-end gap-6">
+        <div>
+          <label for="conversion" class="block text-sm font-medium text-gray-700 mb-2 min-h-[1.25rem]">Conversion Type</label>
+          <select id="conversion" class="p-2 rounded border border-gray-300 shadow-sm transition">
+            <option value="technical">Technical</option>
+            <option value="formal">Formal</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="spiciness" class="block text-sm font-medium text-gray-700 mb-2 min-h-[1.25rem]">Strength</label>
+          <input type="range" id="spiciness" min="0" max="5" value="3" class="w-40 accent-blue-600">
+        </div>
+      </div>
+
+      <button id="submitBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition flex items-center gap-2">
+        <i class="bi bi-arrow-right-circle"></i> Convert
+      </button>
+
+      <div id="outputContainer" class="hidden fade-in relative">
+        <div id="output" class="p-5 mt-6 bg-gray-50 border border-gray-200 rounded-lg shadow text-gray-800 whitespace-pre-wrap min-h-[80px] transition"></div>
+        <button id="copyBtn" class="absolute top-2 right-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded shadow-sm flex items-center gap-1 transition-all">
+          <i class="bi bi-clipboard"></i> Copy
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
