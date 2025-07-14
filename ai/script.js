@@ -220,10 +220,19 @@ function typeWriterEffect(element, text, speed = 50) {
   typeChar();
 }
 
-// Show notifications
+// Show notifications with proper stacking
 function showNotification(message, type = "info") {
+  // Create notification container if it doesn't exist
+  let notificationContainer = document.getElementById('notification-container');
+  if (!notificationContainer) {
+    notificationContainer = document.createElement('div');
+    notificationContainer.id = 'notification-container';
+    notificationContainer.className = 'fixed top-4 right-4 z-50 space-y-3';
+    document.body.appendChild(notificationContainer);
+  }
+  
   const notification = document.createElement('div');
-  notification.className = `fixed top-4 right-4 px-6 py-4 rounded-lg shadow-lg z-50 flex items-center space-x-3 transition-all transform translate-x-full opacity-0`;
+  notification.className = `px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 transition-all transform translate-x-full opacity-0 max-w-sm`;
   
   let bgColor, iconClass, textColor;
   switch(type) {
@@ -250,22 +259,28 @@ function showNotification(message, type = "info") {
   
   notification.classList.add(bgColor, textColor);
   notification.innerHTML = `
-    <i class="bi ${iconClass}"></i>
+    <i class="bi ${iconClass} flex-shrink-0"></i>
     <span class="font-medium">${message}</span>
   `;
   
-  document.body.appendChild(notification);
+  notificationContainer.appendChild(notification);
   
   // Animate in
   setTimeout(() => {
     notification.classList.remove('translate-x-full', 'opacity-0');
   }, 100);
   
-  // Auto remove
+  // Auto remove after 4 seconds
   setTimeout(() => {
     notification.classList.add('translate-x-full', 'opacity-0');
     setTimeout(() => {
-      document.body.removeChild(notification);
+      if (notification.parentNode) {
+        notificationContainer.removeChild(notification);
+      }
+      // Remove container if empty
+      if (notificationContainer.children.length === 0) {
+        document.body.removeChild(notificationContainer);
+      }
     }, 300);
   }, 4000);
 }
